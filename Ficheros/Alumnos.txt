@@ -1,0 +1,4 @@
+Sara 20 1,58
+Naiara 22 1,60
+Luis 18 1,70
+Isabel 24 2,00
