@@ -21,7 +21,7 @@ public class Ej3Main {
 		int sumaEdad=0;//la suma de todas las edades
 		int vuelta=0;//Se cuentan las vueltas para poder hacer las medias
 		try {//metemos en un try catch porque hay varias cosas que explotan
-			Scanner lee = new Scanner(new BufferedReader(new FileReader("Alumnos.txt")));//leemos el fichero
+			Scanner lee = new Scanner(new FileReader("Alumnos.txt"));//leemos el fichero
 			while(lee.hasNextLine()) {//mientras aun hayan lineas
 				linea = lee.nextLine(); //leemos la linea
 				array = linea.split(" "); //en un array dividimos la linea en 3, porque la 1era posicion es el nombre, la segunda la edad y la tercera la estatura

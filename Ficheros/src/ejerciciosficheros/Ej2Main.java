@@ -12,7 +12,7 @@ public class Ej2Main {
 		double media=0;
 		int vuelta=0;
 		try {
-			Scanner lee = new Scanner (new BufferedReader(new FileReader("Enteros.txt")));
+			Scanner lee = new Scanner (new FileReader("Enteros.txt"));
 			suma = lee.nextInt();
 			while(lee.hasNextInt()) {
 				suma+=lee.nextInt();
