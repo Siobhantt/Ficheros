@@ -1,14 +1,20 @@
 package ejerciciosficheros;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Ej7Main {
-	static Scanner lee = new Scanner(System.in);
-static BufferedWriter in;
-static TreeMap<String,Integer> contactos =  new TreeMap<>();
+	public class Ej7Main {
+		//Declaramos el scanner estatico porque lo vamos a necesitar en los metodos
+			static Scanner lee = new Scanner(System.in);
+			//declaramos el writer para escribir en el ficherp
+			static BufferedWriter in;
+			//el mapa que usaremos para guardar los contactos
+			static TreeMap<String,Long> contactos =  new TreeMap<>();
 	public static void main(String[] args) {
+		//opcion del usuario
 		int opcionU=0;
 		do {
 			menu();
@@ -24,26 +30,56 @@ static TreeMap<String,Integer> contactos =  new TreeMap<>();
 				mostrar();
 				break;
 			case 4:
+				guardarDatos();
+				System.out.println("Guardando datos...");
 				
-				adios();
 				break;
+			case 5:
+				borrar();
+				break;
+			case 0:
+				adios();
+			break;
 				default:
 					System.out.println("Opcion no contemplada :/");
 					break;
 			}
-		}while(opcionU!=4);
+		}while(opcionU!=0);
 	}//fin del main
+	//=======================================ESTO ES IMPORTANTE====================================
+	public static void guardarDatos(){
+		String nombre="";//para guardar el nombre que esta en el conjunto
+		long numero=1000L;//el numero de telefono que esta en el conjunto
+			try {//EN EL TRY TENGO QUE METER EL BUFFERED WRITER 
+				in =  new BufferedWriter(new FileWriter("Agenda.txt"));
+				//Recorremos el mapa
+				for(String nom : contactos.keySet()) {
+					nombre = nom;//el nombre será igual a lo que este guardado en la iteracion del bucle 
+					numero = contactos.get(nombre); //de esa clave sacaremos el valor asociado
+					in.write(nombre + " " + numero); //y escribiremos tal cual en el fichero
+					in.newLine();//un salto de linea
+				}		
+				in.flush();//EL FLUSH FUERA DEL BUCLE
+			} catch (IOException e) {
+				System.out.println("Error");
+			}
+		}
+	
 	public static void menu() {
 		System.out.println("Bienvenido a su agenda de contactos!");
 		System.out.println("Por favor seleccione una de las opciones disponibles.");
 		System.out.println("1.Añadir un nuevo contacto.");
 		System.out.println("2.Buscar por nombre.");
-		System.out.println("3.Mostrar todos los conatctos guardados.");
-		System.out.println("4.Salir");
+		System.out.println("3.Mostrar todos los contactos guardados.");
+		System.out.println("4.Guardar");
+		System.out.println("5.Borrar");
+		System.out.println("0.Salir");
+		
 	}
-public static void añadirContacto() {
+	
+	public static void añadirContacto() {
 	String nombre="";
-	int numero=0;
+	long numero=1000L;
 	System.out.println("Ha seleccionado la opcion de agregar un contacto.");
 	System.out.println("Por favor introduzca el nombre.");
 	nombre = lee.next();
@@ -55,7 +91,9 @@ public static void añadirContacto() {
 		contactos.put(nombre, numero);
 		System.out.println("Se ha guardado un nuevo contacto.");
 	}
+	
 }
+
 public static void buscarNombre() {
 	String nombre="";
 	System.out.println("Ha seleccionado la opcion de buscar un contacto");
@@ -66,11 +104,28 @@ public static void buscarNombre() {
 	}else {
 		System.out.println("El nombre que buscar no tiene ningun numero registrado.");
 	}
+	
 }
+
 public static void mostrar() {
 	System.out.println(contactos);
+	System.out.println();
 }
+
 public static void adios() {
 	System.out.println("Cerrando programa...");
+	System.out.println("Guardando datos...");
+}
+
+public static void borrar() {
+	System.out.println("Escriba el nombre de la persona que desea eliminar.");
+	String nombre="";
+	nombre = lee.next();
+	if(contactos.containsKey(nombre)) {
+		contactos.remove(nombre);
+	}else {
+		System.out.println("El nombre que desea eliminar no se encuentra en la agenda.");
+	}
+	System.out.println();
 }
 }
