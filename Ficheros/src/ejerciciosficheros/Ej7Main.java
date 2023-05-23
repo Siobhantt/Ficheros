@@ -53,7 +53,8 @@ public class Ej7Main {
 		String nombre = "";// para guardar el nombre que esta en el conjunto
 		long numero = 1000L;// el numero de telefono que esta en el conjunto
 		try {// EN EL TRY TENGO QUE METER EL BUFFERED WRITER
-			in = new BufferedWriter(new FileWriter("Agenda.txt"));
+			//el true en el buffered writer es para que respete lo que habia anteriormente y no lo borre
+			in = new BufferedWriter(new FileWriter("Agenda.txt",true));
 			// Recorremos el mapa
 			for (String nom : contactos.keySet()) {
 				nombre = nom;// el nombre será igual a lo que este guardado en la iteracion del bucle
