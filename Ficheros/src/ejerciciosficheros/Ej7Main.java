@@ -6,20 +6,21 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-	public class Ej7Main {
-		//Declaramos el scanner estatico porque lo vamos a necesitar en los metodos
-			static Scanner lee = new Scanner(System.in);
-			//declaramos el writer para escribir en el ficherp
-			static BufferedWriter in;
-			//el mapa que usaremos para guardar los contactos
-			static TreeMap<String,Long> contactos =  new TreeMap<>();
+public class Ej7Main {
+	// Declaramos el scanner estatico porque lo vamos a necesitar en los metodos
+	static Scanner lee = new Scanner(System.in);
+	// declaramos el writer para escribir en el ficherp
+	static BufferedWriter in;
+	// el mapa que usaremos para guardar los contactos
+	static TreeMap<String, Long> contactos = new TreeMap<>();
+
 	public static void main(String[] args) {
-		//opcion del usuario
-		int opcionU=0;
+		// opcion del usuario
+		int opcionU = 0;
 		do {
 			menu();
 			opcionU = lee.nextInt();
-			switch(opcionU){
+			switch (opcionU) {
 			case 1:
 				añadirContacto();
 				break;
@@ -32,39 +33,40 @@ import java.util.TreeMap;
 			case 4:
 				guardarDatos();
 				System.out.println("Guardando datos...");
-				
 				break;
 			case 5:
 				borrar();
 				break;
 			case 0:
 				adios();
-			break;
-				default:
-					System.out.println("Opcion no contemplada :/");
-					break;
+				break;
+			default:
+				System.out.println("Opcion no contemplada :/");
+				break;
 			}
-		}while(opcionU!=0);
-	}//fin del main
-	//=======================================ESTO ES IMPORTANTE====================================
-	public static void guardarDatos(){
-		String nombre="";//para guardar el nombre que esta en el conjunto
-		long numero=1000L;//el numero de telefono que esta en el conjunto
-			try {//EN EL TRY TENGO QUE METER EL BUFFERED WRITER 
-				in =  new BufferedWriter(new FileWriter("Agenda.txt"));
-				//Recorremos el mapa
-				for(String nom : contactos.keySet()) {
-					nombre = nom;//el nombre será igual a lo que este guardado en la iteracion del bucle 
-					numero = contactos.get(nombre); //de esa clave sacaremos el valor asociado
-					in.write(nombre + " " + numero); //y escribiremos tal cual en el fichero
-					in.newLine();//un salto de linea
-				}		
-				in.flush();//EL FLUSH FUERA DEL BUCLE
-			} catch (IOException e) {
-				System.out.println("Error");
+		} while (opcionU != 0);
+	}// fin del main
+		// =======================================ESTO ES
+		// IMPORTANTE====================================
+
+	public static void guardarDatos() {
+		String nombre = "";// para guardar el nombre que esta en el conjunto
+		long numero = 1000L;// el numero de telefono que esta en el conjunto
+		try {// EN EL TRY TENGO QUE METER EL BUFFERED WRITER
+			in = new BufferedWriter(new FileWriter("Agenda.txt"));
+			// Recorremos el mapa
+			for (String nom : contactos.keySet()) {
+				nombre = nom;// el nombre será igual a lo que este guardado en la iteracion del bucle
+				numero = contactos.get(nombre); // de esa clave sacaremos el valor asociado
+				in.write(nombre + " " + numero); // y escribiremos tal cual en el fichero
+				in.newLine();// un salto de linea
 			}
+			in.flush();// EL FLUSH FUERA DEL BUCLE
+		} catch (IOException e) {
+			System.out.println("Error");
 		}
-	
+	}
+
 	public static void menu() {
 		System.out.println("Bienvenido a su agenda de contactos!");
 		System.out.println("Por favor seleccione una de las opciones disponibles.");
@@ -74,58 +76,58 @@ import java.util.TreeMap;
 		System.out.println("4.Guardar");
 		System.out.println("5.Borrar");
 		System.out.println("0.Salir");
-		
+
 	}
-	
+
 	public static void añadirContacto() {
-	String nombre="";
-	long numero=1000L;
-	System.out.println("Ha seleccionado la opcion de agregar un contacto.");
-	System.out.println("Por favor introduzca el nombre.");
-	nombre = lee.next();
-	System.out.println("Por favor introduzca el numero.");
-	numero = lee.nextInt();
-	if(contactos.containsKey(nombre)&&contactos.size()<20) {
-		System.out.println("El nombre introducido ya existe en la agenda.");
-	}else{
-		contactos.put(nombre, numero);
-		System.out.println("Se ha guardado un nuevo contacto.");
+		String nombre = "";
+		long numero = 1000L;
+		System.out.println("Ha seleccionado la opcion de agregar un contacto.");
+		System.out.println("Por favor introduzca el nombre.");
+		nombre = lee.next();
+		System.out.println("Por favor introduzca el numero.");
+		numero = lee.nextInt();
+		if (contactos.containsKey(nombre) && contactos.size() < 20) {
+			System.out.println("El nombre introducido ya existe en la agenda.");
+		} else {
+			contactos.put(nombre, numero);
+			System.out.println("Se ha guardado un nuevo contacto.");
+		}
+
 	}
-	
-}
 
-public static void buscarNombre() {
-	String nombre="";
-	System.out.println("Ha seleccionado la opcion de buscar un contacto");
-	System.out.println("Por favor introduzca el nombre del numero al que desea acceder.");
-	nombre = lee.next();
-	if(contactos.containsKey(nombre)){
-		System.out.println(nombre + "-->"+ contactos.get(nombre));
-	}else {
-		System.out.println("El nombre que buscar no tiene ningun numero registrado.");
+	public static void buscarNombre() {
+		String nombre = "";
+		System.out.println("Ha seleccionado la opcion de buscar un contacto");
+		System.out.println("Por favor introduzca el nombre del numero al que desea acceder.");
+		nombre = lee.next();
+		if (contactos.containsKey(nombre)) {
+			System.out.println(nombre + "-->" + contactos.get(nombre));
+		} else {
+			System.out.println("El nombre que buscar no tiene ningun numero registrado.");
+		}
+
 	}
-	
-}
 
-public static void mostrar() {
-	System.out.println(contactos);
-	System.out.println();
-}
-
-public static void adios() {
-	System.out.println("Cerrando programa...");
-	System.out.println("Guardando datos...");
-}
-
-public static void borrar() {
-	System.out.println("Escriba el nombre de la persona que desea eliminar.");
-	String nombre="";
-	nombre = lee.next();
-	if(contactos.containsKey(nombre)) {
-		contactos.remove(nombre);
-	}else {
-		System.out.println("El nombre que desea eliminar no se encuentra en la agenda.");
+	public static void mostrar() {
+		System.out.println(contactos);
+		System.out.println();
 	}
-	System.out.println();
-}
+
+	public static void adios() {
+		System.out.println("Cerrando programa...");
+		System.out.println("Guardando datos...");
+	}
+
+	public static void borrar() {
+		System.out.println("Escriba el nombre de la persona que desea eliminar.");
+		String nombre = "";
+		nombre = lee.next();
+		if (contactos.containsKey(nombre)) {
+			contactos.remove(nombre);
+		} else {
+			System.out.println("El nombre que desea eliminar no se encuentra en la agenda.");
+		}
+		System.out.println();
+	}
 }
