@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class Ej8Main {
 	static Scanner lee = new Scanner(System.in);
-	static BufferedWriter in;
-static BufferedReader br;
+	static BufferedWriter in;//escritor
+static BufferedReader br;//lector
 	public static void main(String[] args) {
 		int tminima = 0;
 		int tmaxima = 0;
@@ -64,30 +64,35 @@ static BufferedReader br;
 		System.out.println("Por favor introduzca el dia:");
 		dia=lee.nextInt();
 	
-		fecha = año+ "-" +mes+ "-" + dia;
+		fecha = año+ "-" +mes+ "-" + dia;//concatenamos toda la informacion es el formato solicitado
 		System.out.println("Por favor introduzca la temperatura minima: " );
 		tminima = lee.nextInt();
 		System.out.println("Por favor introduzca la temperatura maxima: ");
 		tmaxima = lee.nextInt();
 		try {
-			in = new BufferedWriter(new FileWriter("Temperaturas.txt",true));
-			in.write(fecha+","+tmaxima+","+tminima);
-			in.newLine();
-			in.flush();
+			in = new BufferedWriter(new FileWriter("Temperaturas.txt",true));//en el try iniciamos el escritor
+			in.write(fecha+","+tmaxima+","+tminima);//escribimos los datos con el formato
+			in.newLine();//bajamos a la linea siguiente
+			in.flush();//lo guadamos
 		} catch (IOException e) {
-			System.out.println("Hay un error con el fichero.");
+			System.out.println("Error al escribir en el fichero.");
 			e.printStackTrace();
+		}finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				System.out.println("Error al cerrar el fichero.");
+			}
 		}
 	}
 	public static void mostrarHistorial() {
-		String linea="";
-		
-		try {
+		String linea=""; //declaramos la variable linea
+		try {//en el try creamos el lector del fichero temperatura
 			br = new BufferedReader(new FileReader("Temperaturas.txt"));
-			linea = br.readLine();
-			while(linea!=null) {
-				System.out.println(linea);
-				linea = br.readLine();
+			linea = br.readLine();//leemos una linea
+			while(linea!=null) {//mientras la linea no sea nula(no este vacia)
+				System.out.println(linea);//la imprimimos
+				linea = br.readLine();//LEEMOS LA SIGUIENTE LINEA
 			}
 		} catch (IOException e) {
 			System.out.println("Error al leer el fichero.");
