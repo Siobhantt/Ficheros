@@ -12,15 +12,17 @@ public class Ej1Main {
 		double media = 0;// la media xd
 
 		try {// se mete en un try catch por si acaso no encuentre el fichero no explote
-			Scanner lee = new Scanner(new FileReader("NumerosReales.txt")); // utilizamos el escanner para leer el
-																			// archivo(Aqui me doy cuenta porque lee uno
-																			// a uno, por el FileReader)
+			Scanner lee = new Scanner(new FileReader("src\\ficherostxt\\NumerosReales.txt")); // utilizamos el escanner
+																								// para leer el
+			// archivo(Aqui me doy cuenta porque lee uno
+			// a uno, por el FileReader)
 			num = lee.nextDouble();// lee el primer numero que pilla
 			while (lee.hasNextDouble()) {// mientras siga habiendo numeros en el fichero
 				num += lee.nextDouble();// al numero le va a sumar lo siguiente que encuentre
 				vuelta++;// aumenta el contador para cada numero que pille
 			}
 			media = num / vuelta;// el numero total dividido entre la cantidad de numeros encontrados
+			lee.close();
 		} catch (FileNotFoundException e1) {// por sin no lo pilla
 			System.out.println("Fichero no encontrado");
 		}

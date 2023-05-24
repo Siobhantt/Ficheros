@@ -12,7 +12,7 @@ public class Ej4Main {
 		String lineas = "";
 		Scanner lee = new Scanner(System.in);
 		try {
-			in = new BufferedWriter(new FileWriter("Prueba.txt"));// Llamamos al lector
+			in = new BufferedWriter(new FileWriter("src\\ficherostxt\\Prueba.txt"));// Llamamos al lector
 			System.out.println("Por favor escriba lo que desee.");
 			System.out.println("Cuando quiera detenerse escriba fin.");
 			while (!lineas.equalsIgnoreCase("fin")) {// mientras no se escriba fin
@@ -26,6 +26,7 @@ public class Ej4Main {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
+		lee.close();
 	}
 
 }

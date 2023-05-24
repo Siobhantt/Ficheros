@@ -1,11 +1,7 @@
 package ejerciciosficheros;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,7 +9,6 @@ public class Ej3Main {
 
 	public static void main(String[] args) {
 		String[] array = new String[0];
-		BufferedReader in;
 		String linea = "";
 		double sumaEstaturas = 0;// Aqui guardo las sumas de todas las estaturas
 		double mediaEstatura = 0;// Aqui se almacina la media final de las estaturas
@@ -21,7 +16,7 @@ public class Ej3Main {
 		int sumaEdad = 0;// la suma de todas las edades
 		int vuelta = 0;// Se cuentan las vueltas para poder hacer las medias
 		try {// metemos en un try catch porque hay varias cosas que explotan
-			Scanner lee = new Scanner(new FileReader("Alumnos.txt"));// leemos el fichero
+			Scanner lee = new Scanner(new FileReader("src\\ficherostxt\\Alumnos.txt"));// leemos el fichero
 			while (lee.hasNextLine()) {// mientras aun hayan lineas
 				linea = lee.nextLine(); // leemos la linea
 				array = linea.split(" "); // en un array dividimos la linea en 3, porque la 1era posicion es el nombre,

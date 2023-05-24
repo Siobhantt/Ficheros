@@ -2,7 +2,6 @@ package ejerciciosficheros;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -68,7 +67,8 @@ public class Ej8Main {
 		System.out.println("Por favor introduzca la temperatura maxima: ");
 		tmaxima = lee.nextInt();
 		try {
-			in = new BufferedWriter(new FileWriter("Temperaturas.txt", true));// en el try iniciamos el escritor
+			in = new BufferedWriter(new FileWriter("src\\ficherostxt\\Temperaturas.txt", true));// en el try iniciamos
+																								// el escritor
 			in.write(fecha + "," + tmaxima + "," + tminima);// escribimos los datos con el formato
 			in.newLine();// bajamos a la linea siguiente
 			in.flush();// lo guadamos
@@ -92,7 +92,7 @@ public class Ej8Main {
 		String[] lineaSplit;
 		String linea = ""; // declaramos la variable linea
 		try {// en el try creamos el lector del fichero temperatura
-			br = new BufferedReader(new FileReader("Temperaturas.txt"));
+			br = new BufferedReader(new FileReader("src\\ficherostxt\\Temperaturas.txt"));
 
 			linea = br.readLine();// leemos una linea
 			while (linea != null) {// mientras la linea no sea nula(no este vacia)

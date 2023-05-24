@@ -52,7 +52,7 @@ public class Ej7Main {
 		try {// EN EL TRY TENGO QUE METER EL BUFFERED WRITER
 				// el true en el buffered writer es para que respete lo que habia anteriormente
 				// y no lo borre
-			in = new BufferedWriter(new FileWriter("Agenda.txt", true));
+			in = new BufferedWriter(new FileWriter("src\\ficherostxt\\Agenda.txt", true));
 			// Recorremos el mapa
 			for (String nom : contactos.keySet()) {
 				nombre = nom;// el nombre será igual a lo que este guardado en la iteracion del bucle
@@ -117,14 +117,14 @@ public class Ej7Main {
 		BufferedReader br = null; // declaro el buffered reader fuera para poder cerrarlo, siempre inicializado a
 									// null
 		try {// en un try catch
-			br = new BufferedReader(new FileReader("C:\\Users\\Luisa\\git\\ficheros\\Ficheros\\Agenda.txt")); // el
-																												// buffer
-																												// de
-																												// escritura,
-																												// aqui
-																												// lo
-																												// estamos
-																												// inicializamos
+			br = new BufferedReader(new FileReader("src\\ficherostxt\\Agenda.txt")); // el
+																						// buffer
+																						// de
+																						// escritura,
+																						// aqui
+																						// lo
+																						// estamos
+																						// inicializamos
 			linea = br.readLine(); // en linea guardo una linea de lectura
 			while (linea != null) {// mientras la linea sea distinta de null
 				// imprimimos la linea
