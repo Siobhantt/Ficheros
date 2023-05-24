@@ -41,7 +41,7 @@ public class Ej7Main {
 				break;
 			}
 		} while (opcionU != 4);
-		lee.close();//cerramos el scanner
+		lee.close();// cerramos el scanner
 	}// fin del main
 		// =======================================ESTO ES
 		// IMPORTANTE====================================
@@ -114,15 +114,23 @@ public class Ej7Main {
 
 	public static void mostrar() {
 		String linea; // declaro la variable linea, aqui voy a guardar la linea leida del fichero
-		BufferedReader br = null; //declaro el buffered reader fuera para poder cerrarlo, siempre inicializado a null
+		BufferedReader br = null; // declaro el buffered reader fuera para poder cerrarlo, siempre inicializado a
+									// null
 		try {// en un try catch
-			br = new BufferedReader(new FileReader("C:\\Users\\Luisa\\git\\ficheros\\Ficheros\\Agenda.txt")); //el buffer de escritura, aqui lo estamos inicializamos
-			linea = br.readLine(); //en linea guardo una linea de lectura	
+			br = new BufferedReader(new FileReader("C:\\Users\\Luisa\\git\\ficheros\\Ficheros\\Agenda.txt")); // el
+																												// buffer
+																												// de
+																												// escritura,
+																												// aqui
+																												// lo
+																												// estamos
+																												// inicializamos
+			linea = br.readLine(); // en linea guardo una linea de lectura
 			while (linea != null) {// mientras la linea sea distinta de null
-				//imprimimos la linea
+				// imprimimos la linea
 				System.out.println("============================================");
 				System.out.println(linea);
-				//una vez impresa la linea volvemos a leer la siguiente
+				// una vez impresa la linea volvemos a leer la siguiente
 				linea = br.readLine();
 			}
 		} catch (IOException e) {

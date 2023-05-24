@@ -27,7 +27,7 @@ public class Ej5Main {
 				nombre = lee.next();
 				System.out.println("Por favor introduzca su edad: ");
 				edad = lee.nextInt();
-				in.write(nombre + " "+ edad);
+				in.write(nombre + " " + edad);
 				in.newLine();
 				System.out.println("Desea introducir datos? s/n");
 				opcion = lee.next();
