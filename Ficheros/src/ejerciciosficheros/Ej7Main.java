@@ -1,6 +1,9 @@
 package ejerciciosficheros;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -12,7 +15,7 @@ public class Ej7Main {
 	// declaramos el writer para escribir en el ficherp
 	static BufferedWriter in;
 	// el mapa que usaremos para guardar los contactos
-	static TreeMap<String, Long> contactos = new TreeMap<>();
+	static TreeMap<String, Integer> contactos = new TreeMap<>();
 
 	public static void main(String[] args) {
 		// opcion del usuario
@@ -82,12 +85,13 @@ public class Ej7Main {
 
 	public static void añadirContacto() {
 		String nombre = "";
-		long numero = 1000L;
+		int numero = 0;
 		System.out.println("Ha seleccionado la opcion de agregar un contacto.");
 		System.out.println("Por favor introduzca el nombre.");
 		nombre = lee.next();
 		System.out.println("Por favor introduzca el numero.");
 		numero = lee.nextInt();
+		lee.nextLine();
 		if (contactos.containsKey(nombre) && contactos.size() < 20) {
 			System.out.println("El nombre introducido ya existe en la agenda.");
 		} else {
@@ -111,8 +115,20 @@ public class Ej7Main {
 	}
 
 	public static void mostrar() {
-		System.out.println(contactos);
-		System.out.println();
+		String linea;
+		try {
+			BufferedReader br =  new BufferedReader(new FileReader("C:\\Users\\Luisa\\git\\ficheros\\Ficheros\\Agenda.txt"));
+			linea = br.readLine();
+			while(linea!=null) {
+				System.out.println("============================================");
+				System.out.println(linea);
+				linea = br.readLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	System.out.println();
 	}
 
 	public static void adios() {

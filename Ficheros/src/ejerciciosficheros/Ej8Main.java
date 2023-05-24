@@ -2,6 +2,8 @@ package ejerciciosficheros;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -25,8 +27,10 @@ static BufferedReader br;
 				registrar();
 				break;
 			case 2:
+				mostrarHistorial();
 				break;
 			case 3:
+				adiu();
 				break;
 			default:
 				System.out.println("Opcion no contemplada.");
@@ -60,20 +64,36 @@ static BufferedReader br;
 		System.out.println("Por favor introduzca el dia:");
 		dia=lee.nextInt();
 	
-		fecha = Integer.toString(año)+ "-" + Integer.toString(mes)+ "-" + Integer.toString(dia);
+		fecha = año+ "-" +mes+ "-" + dia;
 		System.out.println("Por favor introduzca la temperatura minima: " );
 		tminima = lee.nextInt();
 		System.out.println("Por favor introduzca la temperatura maxima: ");
 		tmaxima = lee.nextInt();
 		try {
-			in = new BufferedWriter(new FileWriter("Temperaturas.txt"));
+			in = new BufferedWriter(new FileWriter("Temperaturas.txt",true));
 			in.write(fecha+","+tmaxima+","+tminima);
+			in.newLine();
+			in.flush();
 		} catch (IOException e) {
 			System.out.println("Hay un error con el fichero.");
 			e.printStackTrace();
 		}
 	}
 	public static void mostrarHistorial() {
+		String linea="";
 		
+		try {
+			br = new BufferedReader(new FileReader("Temperaturas.txt"));
+			linea = br.readLine();
+			while(linea!=null) {
+				System.out.println(linea);
+				linea = br.readLine();
+			}
+		} catch (IOException e) {
+			System.out.println("Error al leer el fichero.");
+		}
+	}
+	public static void adiu() {
+		System.out.println("Cerrando el programa.");
 	}
 }
